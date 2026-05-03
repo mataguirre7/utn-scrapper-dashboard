@@ -22,7 +22,7 @@ export default function CalendarPage() {
 
         const allActivities = await Promise.all(
           allCourses.map(c => api.activities.getByCourse(c.id))
-        ).then(results => results.flat());
+        ).then(results => results.flat()) as Activity[];
         setActivities(allActivities);
       } catch (error) {
         console.error('Error loading calendar:', error);
