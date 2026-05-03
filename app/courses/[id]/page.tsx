@@ -14,7 +14,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   useEffect(() => {
     async function loadCourse() {
       try {
-        const data = await api.courses.getById(id);
+        const data = await api.courses.getById(id) as CourseDetail;
         setCourse(data);
       } catch (error) {
         console.error('Error loading course:', error);

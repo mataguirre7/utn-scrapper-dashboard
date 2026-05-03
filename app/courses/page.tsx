@@ -14,7 +14,7 @@ export default function CoursesPage() {
   useEffect(() => {
     async function loadCourses() {
       try {
-        const data = await api.courses.getAll();
+        const data = await api.courses.getAll() as Course[];
         setCourses(data);
       } catch (error) {
         console.error('Error loading courses:', error);
