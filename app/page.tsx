@@ -18,13 +18,13 @@ export default function Dashboard() {
         const [coursesData, notificationsData] = await Promise.all([
           api.courses.getAll(),
           api.notifications.getAll(7),
-        ]) as [Course[], NotificationLog[]];
+        ]);
         setCourses(coursesData);
         setNotifications(notificationsData);
 
         const allActivities = await Promise.all(
           coursesData.map(c => api.activities.getByCourse(c.id))
-        ).then(results => results.flat()) as Activity[];
+        ).then(results => results.flat());
         setActivities(allActivities);
       } catch (error) {
         console.error('Error loading dashboard:', error);

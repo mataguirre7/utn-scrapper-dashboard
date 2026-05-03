@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CalendarEvent, Activity, Course } from '@/lib/types';
+import { CalendarEvent, Activity } from '@/lib/types';
 import { api } from '@/lib/api';
 import { formatDate, getDaysUntilDue, isDueSoon, isOverdue } from '@/lib/utils';
 
@@ -16,13 +16,13 @@ export default function CalendarPage() {
         const [eventsData, allCourses] = await Promise.all([
           api.events.getAll(),
           api.courses.getAll(),
-        ]) as [CalendarEvent[], Course[]];
+        ]);
 
         setEvents(eventsData);
 
         const allActivities = await Promise.all(
           allCourses.map(c => api.activities.getByCourse(c.id))
-        ).then(results => results.flat()) as Activity[];
+        ).then(results => results.flat());
         setActivities(allActivities);
       } catch (error) {
         console.error('Error loading calendar:', error);

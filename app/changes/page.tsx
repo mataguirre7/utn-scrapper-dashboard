@@ -13,7 +13,7 @@ export default function ChangesPage() {
   useEffect(() => {
     async function loadNotifications() {
       try {
-        const data = await api.notifications.getAll(30) as NotificationLog[];
+        const data = await api.notifications.getAll(30);
         setNotifications(data);
       } catch (error) {
         console.error('Error loading notifications:', error);
